@@ -2,8 +2,17 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const morgan = require("morgan");
+const cors = require("cors");
 require("./config"); // --> require the db()
 const router = require("./routes");
+
+app.use(
+  cors({
+    origin: "https://ceiblog.netlify.app/",
+    methods: "GET, POST, PUT, DELETE, OPTIONS",
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(morgan("tiny"));
