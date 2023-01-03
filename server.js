@@ -8,8 +8,8 @@ const router = require("./routes");
 
 app.use(
   cors({
-    origin: "https://ceiblog.netlify.app/",
-    methods: "GET, POST, PUT, DELETE, OPTIONS",
+    origin: "*",
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
     credentials: true,
   })
 );
