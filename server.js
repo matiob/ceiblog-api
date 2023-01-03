@@ -8,7 +8,7 @@ const router = require("./routes");
 
 app.use(
   cors({
-    origin: `https://ceiblog.netlify.app/`,
+    origin: `http://localhost:${process.env.PORT}/`,
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
     credentials: true,
   })
