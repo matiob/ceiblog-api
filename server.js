@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
+require("dotenv").config();
 const morgan = require("morgan");
 require("./config"); // --> require the db()
-require("dotenv").config();
 const router = require("./routes");
 
 app.use(express.json());
@@ -15,5 +15,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-  console.log(`Server listening on http//:localhost:3001`);
+  console.log(`Server listening on http//:localhost:${process.env.PORT}`);
 });
