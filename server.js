@@ -2,17 +2,17 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const morgan = require("morgan");
-const cors = require("cors");
+//const cors = require("cors");
 require("./config"); // --> require the db()
 const router = require("./routes");
 
-app.use(
+/* app.use(
   cors({
-    origin: `https://ceiblog.netlify.app/`,
+    origin: `http://localhost:${process.env.PORT}/`,
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
     credentials: true,
   })
-);
+); */
 
 app.use(express.json());
 app.use(morgan("tiny"));
@@ -24,5 +24,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-  console.log(`Server listening on https://ceibo-blog-service.onrender.com/`);
+  console.log(`Server listening on https://ceibo-blog-service.onrender.com`);
 });
