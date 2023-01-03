@@ -8,7 +8,7 @@ const router = require("./routes");
 
 app.use(
   cors({
-    origin: `http://localhost:${process.env.PORT}/`,
+    origin: `https://ceiblog.netlify.app/:${process.env.PORT}/`,
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
     credentials: true,
   })
@@ -24,5 +24,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-  console.log(`Server listening on http//:localhost:${process.env.PORT}`);
+  console.log(`Server listening on https://ceibo-blog-service.onrender.com/`);
 });
