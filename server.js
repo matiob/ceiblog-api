@@ -24,5 +24,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-  console.log(`Server listening on https://ceibo-blog-service.onrender.com`);
+  console.log(`Server listening on PORT ${process.env.PORT}`);
 });

@@ -1,12 +1,12 @@
 require("dotenv").config();
-const Users = require("../models/Users");
+const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const { verifyHash } = require("../middleware/hash");
 
-class UsersService {
+class UserService {
   static async serviceGetAllUsers(req) {
     try {
-      const allUsers = await Users.find({ _id: { $ne: req.user.id } });
+      const allUsers = await User.find({ _id: { $ne: req.user.id } });
       return allUsers;
     } catch (err) {
       console.error(err);
@@ -16,11 +16,11 @@ class UsersService {
   static async serviceResgisterUser(req) {
     const { email, password } = req.body;
     try {
-      let user = await Users.findOne({ email });
+      let user = await User.findOne({ email });
       if (user) {
         return `El mail ${user.email} ya tiene un usuario asociado`;
       } else {
-        const newUser = await Users.create(req.body);
+        const newUser = await User.create(req.body);
         return newUser;
       }
     } catch (err) {
@@ -32,7 +32,7 @@ class UsersService {
     const { email, password } = req.body;
     try {
       if (email && password) {
-        let user = await Users.findOne({ email });
+        let user = await User.findOne({ email });
         if (!user) return { msg: "No such user found", user };
         let verifyUser = await verifyHash(password, user.password, user.salt);
         if (!verifyUser) {
@@ -53,7 +53,7 @@ class UsersService {
 
   static async serviceGetMe(req) {
     try {
-      const user = await Users.findById(req.user.id);
+      const user = await User.findById(req.user.id);
       return user;
     } catch (err) {
       console.error(err);
@@ -63,7 +63,7 @@ class UsersService {
   static async serviceEditUser(req, next) {
     try {
       const { id } = req.params;
-      const user = await Users.findByIdAndUpdate(id, req.body, { new: true });
+      const user = await User.findByIdAndUpdate(id, req.body, { new: true });
       return user;
     } catch (err) {
       next(err);
@@ -72,7 +72,7 @@ class UsersService {
 
   static async serviceGetOneUser(req, next) {
     try {
-      const user = await Users.findById(req.params.id);
+      const user = await User.findById(req.params.id);
       return user;
     } catch (err) {
       next(err);
@@ -81,4 +81,4 @@ class UsersService {
 
 }
 
-module.exports = UsersService;
+module.exports = UserService;

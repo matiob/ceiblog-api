@@ -1,13 +1,13 @@
-const UsersService = require("../services/usersServices");
+const UserService = require("../services/userService");
 
-class UsersController {
+class UserController {
   static async getAllUsers(req, res) {
-    const users = await UsersService.serviceGetAllUsers(req);
+    const users = await UserService.serviceGetAllUsers(req);
     return users ? res.status(201).send(users) : res.sendStatus(401);
   }
 
   static async registerUsers(req, res) {
-    const user = await UsersService.serviceResgisterUser(req);
+    const user = await UserService.serviceResgisterUser(req);
     if (typeof user === "string") {
       return res.status(403).send(user);
     } else {
@@ -16,7 +16,7 @@ class UsersController {
   }
 
   static async loginUsers(req, res) {
-    const user = await UsersService.serviceLogin(req);
+    const user = await UserService.serviceLogin(req);
     return user ? res.status(200).send(user) : res.sendStatus(401);
   }
 
@@ -26,19 +26,19 @@ class UsersController {
   }
 
   static async getMe(req, res) {
-    const user = await UsersService.serviceGetMe(req);
+    const user = await UserService.serviceGetMe(req);
     return user ? res.send(user) : res.status(401);
   }
 
   static async editUsers(req, res, next) {
-    const updatedUser = await UsersService.serviceEditUser(req, next);
+    const updatedUser = await UserService.serviceEditUser(req, next);
     return updatedUser ? res.status(200).send(updatedUser) : res.status(401);
   }
 
   static async getOneUsers(req, res, next) {
-    const user = await UsersService.serviceGetOneUser(req, next);
+    const user = await UserService.serviceGetOneUser(req, next);
     return user ? res.send(user) : res.status(401);
   }
 
 }
-module.exports = UsersController;
+module.exports = UserController;

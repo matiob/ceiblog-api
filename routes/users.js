@@ -1,20 +1,20 @@
 const express = require("express");
 const router = express.Router();
-const UsersController = require("../controllers/usersControllers");
+const UserController = require("../controllers/userController");
 
 //RUTA PARA TRAER TODOS LOS USUARIOS
-router.get("/", UsersController.getAllUsers);
+router.get("/", UserController.getAllUsers);
 //RUTA PARA REGISTRAR UN USUARIO
-router.post("/register", UsersController.registerUsers);
+router.post("/register", UserController.registerUsers);
 //RUTA PARA LOGIN
-router.post("/login", UsersController.loginUsers);
+router.post("/login", UserController.loginUsers);
 //RUTA PARA LOGOUT
-router.post("/logout", UsersController.logOutUsers);
+router.post("/logout", UserController.logOutUsers);
 //RUTA PARA DEVOLVER USUARIO LOGUEADO
-router.get("/me", UsersController.getMe);
+router.get("/me", UserController.getMe);
 //RUTA PARA EDITAR UN USUARIO
-router.put("/:id", UsersController.editUsers);
+router.put("/:id", UserController.editUsers);
 //RUTA PARA VER UN USUARIO PARTICULAR
-router.get("/:id", UsersController.getOneUsers);
+router.get("/:id", UserController.getOneUsers);
 
 module.exports = router;
