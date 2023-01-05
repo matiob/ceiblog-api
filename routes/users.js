@@ -10,11 +10,13 @@ router.post("/register", UserController.registerUsers);
 router.post("/login", UserController.loginUsers);
 //RUTA PARA LOGOUT
 router.post("/logout", UserController.logOutUsers);
-//RUTA PARA DEVOLVER USUARIO LOGUEADO
-router.get("/me", UserController.getMe);
+//RUTA PARA DEVOLVER USUARIO LOGUEADO ---- dEPRECATED
+//router.get("/me", UserController.getMe);
 //RUTA PARA EDITAR UN USUARIO
 router.put("/:id", UserController.editUsers);
 //RUTA PARA VER UN USUARIO PARTICULAR
 router.get("/:id", UserController.getOneUsers);
+//RUTA PARA ELIMINAR UN USUARIO
+router.delete("/:id", UserController.deleteUser);
 
 module.exports = router;

@@ -1,23 +1,27 @@
 require("dotenv").config();
 const Post = require("../models/Post");
-const User = require('../models/User');
+const User = require("../models/User");
 
 class PostService {
   //Service para traer todos los post
   static async serviceGetAllPosts(req) {
     try {
-      const allPosts = await Post.find({}).populate("author");
+      const allPosts = await Post.find({})
+        .populate("author")
+        .populate("category");
       return allPosts;
     } catch (err) {
       console.error(err);
     }
   }
   //Service para traer post por categoria
-  static async servicePostByCategory(req, next) {
+  static async servicePostByCategory(req, next) { //REVISAR
     try {
       const posts = await Post.find({
         category: req.params.name,
-      }).populate("author");
+      })
+        .populate("author")
+        .populate("category");
       return posts;
     } catch (err) {
       next(err);
@@ -26,14 +30,15 @@ class PostService {
   //Service para traer post por autor
   static async serviceGetAuthorPost(req, next) {
     try {
-      const author = await User.findById(req.params.id)
+      const author = await User.findById(req.params.id);
       const posts = await Post.find({})
         .where("author")
         .equals(author)
         .populate("author")
-      return posts
+        .populate("category");
+      return posts;
     } catch (err) {
-      next(err)
+      next(err);
     }
   }
   //Service para insertar un post en la DB
@@ -64,7 +69,9 @@ class PostService {
   //Service para traer un post en particular
   static async serviceGetOnePost(req, next) {
     try {
-      const post = await Post.findById(req.params.id).populate("author");
+      const post = await Post.findById(req.params.id)
+        .populate("author")
+        .populate("category");
       return post;
     } catch (err) {
       next(err);

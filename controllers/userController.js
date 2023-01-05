@@ -25,10 +25,11 @@ class UserController {
     return res.status(200).send({});
   }
 
-  static async getMe(req, res) {
+  //deprecated
+  /* static async getMe(req, res) {
     const user = await UserService.serviceGetMe(req);
     return user ? res.send(user) : res.status(401);
-  }
+  } */
 
   static async editUsers(req, res, next) {
     const updatedUser = await UserService.serviceEditUser(req, next);
@@ -40,5 +41,9 @@ class UserController {
     return user ? res.send(user) : res.status(401);
   }
 
+  static async deleteUser(req, res, next) {
+    const deletedUser = await UserService.serviceDeleteUser(req, next);
+    return deletedUser ? res.sendStatus(202) : res.status(401);
+  }
 }
 module.exports = UserController;

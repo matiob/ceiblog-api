@@ -51,14 +51,15 @@ class UserService {
     }
   }
 
-  static async serviceGetMe(req) {
+  //deprecated
+  /* static async serviceGetMe(req) {
     try {
-      const user = await User.findById(req.user.id);
+      const user = await User.findById(req.body.id);
       return user;
     } catch (err) {
       console.error(err);
     }
-  }
+  } */
 
   static async serviceEditUser(req, next) {
     try {
@@ -79,6 +80,18 @@ class UserService {
     }
   }
 
+  static async serviceDeleteUser(req, next) {
+    try {
+      const userDeleted = await User.destroy({
+        where: {
+          id: req.params.id,
+        },
+      });
+      return userDeleted;
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 module.exports = UserService;
