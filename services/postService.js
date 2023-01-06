@@ -8,7 +8,7 @@ class PostService {
     try {
       const allPosts = await Post.find({})
         .populate("author")
-        .populate("category");
+        .populate("categories");
       return allPosts;
     } catch (err) {
       console.error(err);
@@ -21,7 +21,7 @@ class PostService {
         category: req.params.name,
       })
         .populate("author")
-        .populate("category");
+        .populate("categories");
       return posts;
     } catch (err) {
       next(err);
@@ -35,7 +35,7 @@ class PostService {
         .where("author")
         .equals(author)
         .populate("author")
-        .populate("category");
+        .populate("categories");
       return posts;
     } catch (err) {
       next(err);
@@ -71,7 +71,7 @@ class PostService {
     try {
       const post = await Post.findById(req.params.id)
         .populate("author")
-        .populate("category");
+        .populate("categories");
       return post;
     } catch (err) {
       next(err);
