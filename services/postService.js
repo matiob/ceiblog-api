@@ -1,6 +1,7 @@
 require("dotenv").config();
 const Post = require("../models/Post");
 const User = require("../models/User");
+const Category = require('../models/Category');
 
 class PostService {
   //Service para traer todos los post
@@ -17,9 +18,10 @@ class PostService {
   //Service para traer post por categoria
   static async servicePostByCategory(req, next) { //REVISAR
     try {
-      const posts = await Post.find({
-        categories: req.params.name,
-      })
+      const category = await Category.findById(req.params.id);
+      const posts = await Post.find({})
+        .where("categories")
+        .equals(category)
         .populate("author")
         .populate("categories");
       return posts;

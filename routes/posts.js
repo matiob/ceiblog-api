@@ -6,7 +6,7 @@ const checkJWT = require("../middleware/jwt")
 //RUTA PARA TRAER TODOS LOS POSTS
 router.get("/", PostController.getAllPosts);
 //RUTA PARA BUSCAR POSTS POR CATEGORIAS
-router.get("/category/:name", PostController.getByCategory);
+router.get("/category/:id", PostController.getByCategory);
 //RUTA PARA BUSCAR POSTS POR AUTOR
 router.get("/author/:id", PostController.getAuthorPosts);
 //RUTA PARA AGREGAR UN POST
