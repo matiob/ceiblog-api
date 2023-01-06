@@ -8,8 +8,8 @@ class PostService {
   static async serviceGetAllPosts(req) {
     try {
       const allPosts = await Post.find({})
-        .populate("authorName")
-        .populate("category");
+        .populate("author")
+        .populate("categories");
       return allPosts;
     } catch (err) {
       console.error(err);
@@ -20,10 +20,10 @@ class PostService {
     try {
       const category = await Category.findById(req.params.id);
       const posts = await Post.find({})
-        .where("category")
+        .where("categories")
         .equals(category)
-        .populate("authorName")
-        .populate("category");
+        .populate("author")
+        .populate("categories");
       return posts;
     } catch (err) {
       next(err);
@@ -34,10 +34,10 @@ class PostService {
     try {
       const author = await User.findById(req.params.id);
       const posts = await Post.find({})
-        .where("authorName")
+        .where("author")
         .equals(author)
-        .populate("authorName")
-        .populate("category");
+        .populate("author")
+        .populate("categories");
       return posts;
     } catch (err) {
       next(err);
@@ -72,8 +72,8 @@ class PostService {
   static async serviceGetOnePost(req, next) {
     try {
       const post = await Post.findById(req.params.id)
-        .populate("authorName")
-        .populate("category");
+        .populate("author")
+        .populate("categories");
       return post;
     } catch (err) {
       next(err);

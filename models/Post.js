@@ -7,7 +7,7 @@ const PostSchema = new Schema(
       required: true,
       unique: true,
     },
-    description: {
+    desc: {
       type: String,
       required: true,
     },
@@ -15,8 +15,8 @@ const PostSchema = new Schema(
       type: String,
       required: false,
     },
-    authorName: { type: Schema.ObjectId, ref: "User" },
-    category: [{ type: Schema.ObjectId, ref: "Category" }],
+    author: { type: Schema.ObjectId, ref: "User" },
+    categories: [{ type: Schema.ObjectId, ref: "Category" }],
     isPrivate: {
       type: Boolean,
       default: true,
