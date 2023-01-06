@@ -14,7 +14,7 @@ class UserService {
   }
 
   static async serviceResgisterUser(req) {
-    const { email, password } = req.body;
+    const { email } = req.body;
     try {
       let user = await User.findOne({ email });
       if (user) {

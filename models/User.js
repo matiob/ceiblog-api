@@ -4,7 +4,6 @@ const { genHash } = require("../middleware/hash");
 
 const UserSchema = new Schema({
   name: {type: String, lowercase: true, required: true},
-  lastName: {type: String, lowercase: true, required: true},
   email: { type: String, lowercase: true, required: true, unique: true },
   password: {
     type: String,
