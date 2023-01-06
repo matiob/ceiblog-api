@@ -18,7 +18,7 @@ class PostService {
   static async servicePostByCategory(req, next) { //REVISAR
     try {
       const posts = await Post.find({
-        category: req.params.name,
+        categories: req.params.name,
       })
         .populate("author")
         .populate("categories");
