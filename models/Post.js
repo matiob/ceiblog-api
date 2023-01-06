@@ -15,8 +15,8 @@ const PostSchema = new Schema(
       type: String,
       required: false,
     },
-    author: { type: Schema.ObjectId, ref: "User" },
-    categories: [{ type: Schema.ObjectId, ref: "Category" }],
+    authorName: { type: Schema.ObjectId, ref: "User" },
+    category: [{ type: Schema.ObjectId, ref: "Category" }],
     isPrivate: {
       type: Boolean,
       default: true,
